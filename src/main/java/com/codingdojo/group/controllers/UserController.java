@@ -91,7 +91,7 @@ public class UserController {
     		return "redirect:/";
     	}
     
-        return "redirect:/quickPage";
+        return "redirect:/accountPage";
     }
     
 }
