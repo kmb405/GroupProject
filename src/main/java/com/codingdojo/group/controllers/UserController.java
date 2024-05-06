@@ -56,7 +56,7 @@ public class UserController {
             // Be sure to send in the empty LoginUser before 
             // re-rendering the page.
             model.addAttribute("newLogin", new LoginUser());
-            return "registerPage.jsp";
+            return "registrationPage.jsp";
         }
         
         // No errors! 
@@ -77,7 +77,7 @@ public class UserController {
     
         if(result.hasErrors()) {
             model.addAttribute("newUser", new User());
-            return "login.jsp";
+            return "loginPage.jsp";
         }
     
         // No errors! 
@@ -91,7 +91,7 @@ public class UserController {
     		return "redirect:/";
     	}
     
-        return "redirect:/accountPage";
+        return "redirect:/quickPage";
     }
     
 }

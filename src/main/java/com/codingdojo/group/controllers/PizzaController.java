@@ -31,7 +31,9 @@ public class PizzaController {
 	
 	
 	@GetMapping("/")
-    public String index() {        return "index.jsp";
+    public String index() {        
+		
+		return "index.jsp";
     }
     
     @GetMapping("/quickPage")
@@ -71,6 +73,19 @@ public class PizzaController {
     	Pizza pizza = pizzaServ.findPizza(id);
     	model.addAttribute("pizza", pizza);
     	return "updatePizzaPage.jsp";
+    }
+    
+    @GetMapping("/account/{id}")
+    public String account(@PathVariable("id") Long id, Model model, HttpSession session) {
+
+		Long userId = (Long) session.getAttribute("userId");
+    	
+    	if(userId==null) {
+    		return "redirect:/login";
+    	}
+    	User user = userServ.findById(id);
+    	model.addAttribute("user", user);
+    	return "accountPage.jsp";
     }
     
     @GetMapping("/orderSum/{id}")
