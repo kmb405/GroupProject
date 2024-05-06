@@ -16,6 +16,10 @@
     <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="/js/app.js"></script><!-- change to match your file/naming structure -->
+        <!-- Google fonts links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
     <style>
 		body {
 			background-image: url('/images/pizzaBackground.jpeg');
@@ -40,6 +44,21 @@
 			font-size: 7rem; /* Adjust as needed */
 			font-weight: 700; /* Adjust as needed */
 		}
+		
+		#titleName, h1 {
+		
+			font-family:"Titan One", sans-serif;
+		
+		}
+		
+		
+		label{
+		
+		font-weight: bold;
+		}
+		
+		
+		
 	</style>
 </head>
 <body>
@@ -50,7 +69,7 @@
 					alt="CrustyMascot" width="130" height="130"
 					class="d-inline-block align-text-top ms-4">
 
-				</a> <span class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
+				</a> <span id="titleName" class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="m-2 nav-link btn" href="/quickPage">Home</a></li>
@@ -65,9 +84,112 @@
 		</div>
 	</nav>
 
-	<h1>Create Your Own Pizza</h1>
-
 	<!-- Add form that Fills requirements for a pizza -->
+	<div class="container" style="width: 35%; margin-top: 10%">
+	
+		<h1 style="text-align: center"> CRAFT - A - PIZZA</h1>
+				<div class="container" style="border: solid black 8px; width: 100%; border-radius: 15px; padding: 20px;" >
+				
+				<form:form action="/newPizza" method="POST" modelAttribute="newPizza">
+				<form:input type="hidden" path="user" value="${user.getId()}"></form:input>
+				
+				<div class="container" id="topForm" style="display: flex;" >
+				
+					<form:label path="deliveryMethod" style="margin-right: 10px">METHOD: </form:label>
+					<form:select path="deliveryMethod" class="form-select" style="border: black solid 2px;">
+					
+						<form:option value="Carry Out" path="deliveryMethod"></form:option>
+						
+						<form:option value="Delivery" path="deliveryMethod"></form:option>
+					
+					</form:select>
+					
+				</div>
+				
+				
+				<div class="container" id="topFormTwo" style="display: flex; justify-content: space-between; 
+				width: 100%; margin-top: 10px; ">
+				
+					<form:label path="size">SIZE: </form:label>
+					<form:select path="size" class="form-select" style="width: 200px; border: black solid 2px;">
+					
+						<form:option value="X-Large" path="size"></form:option>
+						
+						<form:option value="Large" path="size"></form:option>
+						
+						<form:option value="Medium" path="size"></form:option>
+						
+						<form:option value="Small" path="size"></form:option>
+					
+					</form:select>	
+					
+					
+					
+					<form:label path="crust">CRUST: </form:label>
+					<form:select path="crust" class="form-select" style="width: 200px; border: black solid 2px;">
+					
+						<form:option value="Thin crust" path="crust"></form:option>
+						
+						<form:option value="Regular crust" path="crust"></form:option>
+						
+						<form:option value="Deep Dish" path="crust"></form:option>
+						
+						<form:option value="Stuffed Crust" path="crust"></form:option>
+					
+					</form:select>	
+					
+					
+					<form:label path="quantity">QTY: </form:label>
+						<form:input type="number" min="1" max="100" path="quantity" style="border: black solid 2px;"></form:input>
+					
+				
+				
+				</div>
+				
+				<label style="margin-left: 10px;"> TOPPINGS:</label>
+					
+				<div class="container" style="border: solid black 5px; height: 150px; width: 80%; 
+				flex-wrap: wrap; flex-direction: column; overflow-y:auto; align-content: flex-start; 
+				column-count: 4; margin-left: 15%; padding: 10px; border-radius: 5px;">
+				
+						
+							<div class="container" id="toppingsBoxes" >
+							
+						
+									
+									<c:forEach var="top" items="${pizzaTops}">
+								
+										
+										
+											
+											<input type="checkbox" name="toppings" value="${top}" path="toppings">
+											  <label for="toppings" path="toppings" > <c:out value="${top}"></c:out></label><br>
+											
+											
+									
+									</c:forEach>
+								
+							
+							
+							
+							</div>
+					
+					
+					
+				</div>
+				
+				<button class="btn btn-danger" style="width: 100%; margin-top: 10px; border: black inset 5px; 
+				box-shadow: 8px 8px black">ADD TO ORDER</button>
+									
+											
+										
+					</form:form>
+		
+		</div>
+		
+		
+	
+	</div>
 
 
 	<!-- Footer -->

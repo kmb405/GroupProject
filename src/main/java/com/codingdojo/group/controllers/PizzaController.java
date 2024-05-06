@@ -1,5 +1,6 @@
 package com.codingdojo.group.controllers;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,8 +58,35 @@ public class PizzaController {
     	if(userId==null) {  		
     		return "redirect:/login";
     	}
+    	
+    	ArrayList<String> pizzaTops = new ArrayList<String>();
+    	
+    		pizzaTops.add("cheese");
+    		pizzaTops.add("pepperoni");
+    		pizzaTops.add("bacon");
+    		pizzaTops.add("ham");
+    		pizzaTops.add("pineapple");
+    		pizzaTops.add("jalapenos");
+    		pizzaTops.add("anchovies");
+    		pizzaTops.add("sausage");
+    		pizzaTops.add("spinach");
+    		pizzaTops.add("tomato");
+    		pizzaTops.add("bell pepper");
+    		pizzaTops.add("artichokes");
+    		pizzaTops.add("chicken");
+    		pizzaTops.add("potatoes");
+    		pizzaTops.add("beef");
+    		pizzaTops.add("basil");
+    		pizzaTops.add("prosciutto");
+    		
+    		
+    	model.addAttribute("pizzaTops", pizzaTops);
+    	
 		User user = userServ.findById(userId);
 		model.addAttribute("user", user);
+		
+		System.out.println(user.getId());
+		
     	return "createPizzaPage.jsp";
     }
     
@@ -89,9 +117,12 @@ public class PizzaController {
     	return "orderSumPage.jsp";
     }
     
+    
+    
+    
     @PostMapping("/newPizza")
-    public String newPizza(@Valid @ModelAttribute("newPizza") Pizza newPizza, BindingResult result, HttpSession session) {
-    	System.out.print(newPizza.getUser());
+    public String newPizza(@Valid @ModelAttribute("newPizza") Pizza newPizza, BindingResult result, HttpSession session, Model model) {
+    	System.out.print(newPizza.getUser().getId());
 		Long userId = (Long) session.getAttribute("userId");
     	
     	if(userId==null) {
@@ -99,6 +130,30 @@ public class PizzaController {
     	}
     	
     	if(result.hasErrors()) {
+    		
+        	ArrayList<String> pizzaTops = new ArrayList<String>();
+        	
+    		pizzaTops.add("cheese");
+    		pizzaTops.add("pepperoni");
+    		pizzaTops.add("bacon");
+    		pizzaTops.add("ham");
+    		pizzaTops.add("pineapple");
+    		pizzaTops.add("jalapenos");
+    		pizzaTops.add("anchovies");
+    		pizzaTops.add("sausage");
+    		pizzaTops.add("spinach");
+    		pizzaTops.add("tomato");
+    		pizzaTops.add("bell pepper");
+    		pizzaTops.add("artichokes");
+    		pizzaTops.add("chicken");
+    		pizzaTops.add("potatoes");
+    		pizzaTops.add("beef");
+    		pizzaTops.add("basil");
+    		pizzaTops.add("prosciutto");
+    		
+    		
+    	model.addAttribute("pizzaTops", pizzaTops);
+    	
     		return "createPizzaPage.jsp";
     	} else {
     		pizzaServ.createPizza(newPizza);

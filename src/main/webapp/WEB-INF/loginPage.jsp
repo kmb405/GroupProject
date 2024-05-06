@@ -20,6 +20,10 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
 <!-- change to match your file/naming structure -->
+<!-- Google fonts links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -29,6 +33,12 @@ body {
 	background-repeat: no-repeat;
 	/* Other CSS styles */
 }
+
+#titleName{
+	font-family:"Titan One", sans-serif;
+
+}
+
 </style>
 
 </head>
@@ -40,7 +50,7 @@ body {
 					alt="CrustyMascot" width="130" height="130"
 					class="d-inline-block align-text-top ms-4">
 
-				</a> <span class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
+				</a> <span id="titleName" class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
 				<ul class="navbar-nav mt-5 me-3">
 					<li class="nav-item"><a class="nav-link btn btn-danger px-4"
@@ -62,7 +72,7 @@ body {
 		<div class="form-group row">
 			<form:label path="password" class="col-sm-2 col-form-label fs-4 fw-bold">Password: </form:label>
 			<form:errors path="password" class="text-danger"></form:errors>
-			<form:input path="password" class="form-control" />
+			<form:input path="password" class="form-control" type="password" />
 		</div>
 		<div class="d-flexform-group text-righ">
 			<input type=submit class="btn btn-danger btn-lg mt-2 mt-4 px-3" value="Submit" />
