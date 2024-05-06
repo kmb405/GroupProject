@@ -1,15 +1,20 @@
 package com.codingdojo.group.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.codingdojo.group.models.LoginUser;
+import com.codingdojo.group.models.Pizza;
 import com.codingdojo.group.models.User;
+import com.codingdojo.group.services.PizzaService;
 import com.codingdojo.group.services.UserService;
 
 import jakarta.servlet.http.HttpSession;
@@ -21,6 +26,9 @@ public class UserController {
     // Add once service is implemented:
      @Autowired
      private UserService userServ;
+     
+     @Autowired
+     private PizzaService pizzaServ;
     
     
     
@@ -34,6 +42,21 @@ public class UserController {
     public String register(@ModelAttribute("newUser") User newUser, HttpSession session) {
     	
     	return "registrationPage.jsp";
+    }
+    
+    @GetMapping("/account/{id}")
+    public String account(@PathVariable("id") Long userId, Model model, HttpSession session) {
+
+		Long userSessionId = (Long) session.getAttribute("userId");
+    	
+    	if(userSessionId==null) {
+    		return "redirect:/login";
+    	}
+    	List<Pizza> pizzas = pizzaServ.findAllById(userId);
+    	User user = userServ.findById(userId);
+    	model.addAttribute("pizza", pizzas);
+    	model.addAttribute("user", user);
+    	return "accountPage.jsp";
     }
     
     @GetMapping("/logout")

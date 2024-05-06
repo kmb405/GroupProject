@@ -42,6 +42,12 @@ public class PizzaService {
 		}
 	}
 	
+	public List<Pizza> findAllById(Long userId) {
+		List<Pizza> userPizzas = pizzaRepo.findByUserId(userId);
+		return userPizzas;
+		
+	}
+	
 	public void deletePizza(Long id) {
 		pizzaRepo.deleteById(id);
 	}

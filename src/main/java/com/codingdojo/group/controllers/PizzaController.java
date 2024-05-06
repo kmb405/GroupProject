@@ -75,18 +75,6 @@ public class PizzaController {
     	return "updatePizzaPage.jsp";
     }
     
-    @GetMapping("/account/{id}")
-    public String account(@PathVariable("id") Long id, Model model, HttpSession session) {
-
-		Long userId = (Long) session.getAttribute("userId");
-    	
-    	if(userId==null) {
-    		return "redirect:/login";
-    	}
-    	User user = userServ.findById(id);
-    	model.addAttribute("user", user);
-    	return "accountPage.jsp";
-    }
     
     @GetMapping("/orderSum/{id}")
     public String orderSum(@PathVariable("id") Long id, Model model, HttpSession session) {
