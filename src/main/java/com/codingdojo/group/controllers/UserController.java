@@ -48,9 +48,6 @@ public class UserController {
     public String register(@Valid @ModelAttribute("newUser") User newUser, 
             BindingResult result, Model model, HttpSession session) {
         
-        // TO-DO Later -- call a register method in the service 
-        // to do some extra validations and create a new user!
-    	userServ.register(newUser, result);
         
         if(result.hasErrors()) {
             // Be sure to send in the empty LoginUser before 
@@ -59,12 +56,16 @@ public class UserController {
             return "registrationPage.jsp";
         }
         
+        // TO-DO Later -- call a register method in the service 
+        // to do some extra validations and create a new user!
+        userServ.register(newUser, result);
+        session.setAttribute("userId", newUser.getId());
         // No errors! 
         // TO-DO Later: Store their ID from the DB in session, 
         // in other words, log them in.
         
     
-        return "redirect:/loginPage";
+        return "redirect:/quickPage";
     }
     
     @PostMapping("/login")

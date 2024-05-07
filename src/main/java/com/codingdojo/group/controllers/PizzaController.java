@@ -85,8 +85,6 @@ public class PizzaController {
 		User user = userServ.findById(userId);
 		model.addAttribute("user", user);
 		
-		System.out.println(user.getId());
-		
     	return "createPizzaPage.jsp";
     }
     
@@ -169,7 +167,7 @@ public class PizzaController {
     		return "createPizzaPage.jsp";
     	} else {
     		pizzaServ.createPizza(newPizza);
-    		return "redirect:/orderSum/" + userId;
+    		return "redirect:/orderSum/" + newPizza.getId();
     	}
     
     }

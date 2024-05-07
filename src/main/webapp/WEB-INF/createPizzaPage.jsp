@@ -51,7 +51,6 @@
 		
 		}
 		
-		
 		label{
 		
 		font-weight: bold;
@@ -146,7 +145,7 @@
 				
 				</div>
 				
-				<label style="margin-left: 10px;"> TOPPINGS:</label>
+				<label style="margin-left: 10px; margin-top: 10px;"> TOPPINGS:</label>
 					
 				<div class="container" style="border: solid black 5px; height: 150px; width: 80%; 
 				flex-wrap: wrap; flex-direction: column; overflow-y:auto; align-content: flex-start; 
