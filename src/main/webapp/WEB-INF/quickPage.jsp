@@ -51,6 +51,12 @@
 		
 		}
 		
+		.actionButtons {
+		
+		margin-left: 35%;
+		
+		}
+		
 	</style>
 </head>
 <body>
@@ -80,7 +86,7 @@
 	<h1 class="custom-heading text-center mt-5">Crusty's Classics</h1>
 	<div class="d-flex flex-column align-items-center">
 		<h2 class="text-center m-5">Pick from one of our signature Pies or create your own!</h2>
-		<a class=" btn btn-danger" href="/createPizza">Create Your Own</a>
+<!-- 		<a class=" btn btn-danger" href="/createPizza">Create Your Own</a> -->
 	</div>
 	<div class="row row-cols-md-3 g-4 m-5">
 		<div class="col">
@@ -90,6 +96,8 @@
 					<h5 class="card-title">Cheese with Fresh Basil</h5>
 					<p class="card-text">Our Classic Cheese Pizza. Subtly flavored
 						with fresh Basil leaves.</p>
+						
+						<a href="/createPizza" class="btn btn-danger actionButtons">NEW ORDER</a>
 				</div>
 			</div>
 		</div>
@@ -100,6 +108,8 @@
 					<h5 class="card-title">Buffalo Chicken</h5>
 					<p class="card-text">Our Special Buffalo sauce with just the
 						right blend of cheeses.</p>
+						<a href="/orderSum/${favPizza}" class="btn btn-danger actionButtons">RE-ORDER MY FAVE</a>
+						
 				</div>
 			</div>
 		</div>
@@ -112,6 +122,8 @@
 					<h5 class="card-title">Pepperoni Pizza</h5>
 					<p class="card-text">One of our Favorites with the perfect
 						amount of Pepperoni sprinkled with Parmesan Cheese.</p>
+						<a href="/orderSum/${randomPizza}" class="btn btn-danger actionButtons">SURPRISE ME</a>
+						
 				</div>
 			</div>
 		</div>

@@ -2,6 +2,7 @@ package com.codingdojo.group.controllers;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -47,6 +48,36 @@ public class PizzaController {
     	}
     	List<Pizza> pizzas = pizzaServ.allPizzas();
     	model.addAttribute("pizzas", pizzas);
+    	
+    	
+    	// Random pizza generator 
+    	
+    	Random randomGen = new Random();
+    	int randomPizzaNum = pizzaServ.allPizzas().size();
+    	
+    	int randomPizza = randomGen.nextInt(randomPizzaNum);
+    		
+    		model.addAttribute("randomPizza", randomPizza);
+    		
+		// for now, this works but sometimes generates numbers that
+    	// pull from the pizza list but if that pizza has been deleted
+    	// it will forward to a blank order.
+    		
+
+    	
+    	
+    	
+    	// Fave pizza attempt
+    	
+    	List<Pizza> favPizza = userServ.findById(userId).getPizza();
+    	
+    	Long tempId = favPizza.get(0).getId();
+    		 
+    	model.addAttribute("favPizza", tempId);
+    	
+    	// For now, fav pizza will order the first pizza in the User's pizza orders ^
+    	
+    	
     	return "quickPage.jsp";
     }
     
@@ -84,8 +115,6 @@ public class PizzaController {
     	
 		User user = userServ.findById(userId);
 		model.addAttribute("user", user);
-		
-		System.out.println(user.getId());
 		
     	return "createPizzaPage.jsp";
     }
@@ -157,7 +186,7 @@ public class PizzaController {
     		return "createPizzaPage.jsp";
     	} else {
     		pizzaServ.createPizza(newPizza);
-    		return "redirect:/orderSum/" + userId;
+    		return "redirect:/orderSum/" + newPizza.getId();
     	}
     
     }

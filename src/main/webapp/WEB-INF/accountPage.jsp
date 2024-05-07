@@ -20,6 +20,10 @@
 <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/js/app.js"></script>
 <!-- change to match your file/naming structure -->
+            <!-- Google fonts links -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
 
 <style>
 body {
@@ -29,6 +33,13 @@ body {
 	background-repeat: no-repeat;
 	/* Other CSS styles */
 }
+
+#titleName {
+
+	font-family:"Titan One", sans-serif;
+}
+
+
 </style>
 
 </head>
@@ -40,7 +51,7 @@ body {
 					alt="CrustyMascot" width="130" height="130"
 					class="d-inline-block align-text-top ms-4">
 
-				</a> <span class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
+				</a> <span id="titleName" class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="m-2 nav-link btn" href="/quickPage">Home</a></li>
