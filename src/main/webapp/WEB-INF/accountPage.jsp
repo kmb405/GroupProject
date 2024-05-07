@@ -55,13 +55,132 @@ body {
 		</div>
 	</nav>
 
-	<h1>Account Info</h1>
+	
 
 	<!-- Add form that autofills current user information and shows past orders -->
-
+	<div class="row">
+		<div class="col m-5">
+			<h1>Account Info</h1>
+				<form:form action="/editUser" method="post" modelAttribute="editUser" class="col p-5 m-2 ">
+				<input type="hidden" name="_method" value="put">
+				<form:input path="id" hidden="hidden" value="${user.id}"/>
+					<div class="form-group row">
+						<form:label path="firstName" class=" col-form-label fs-4 fw-bold">First Name: </form:label>
+						<form:errors path="firstName" class="text-danger"></form:errors>
+						<form:input path="firstName" class="form-control" value="${user.firstName}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="lastName"	class="col-form-label fs-4 fw-bold">Last Name: </form:label>
+						<form:errors path="lastName" class="text-danger"></form:errors>
+						<form:input path="lastName" class="form-control" value="${user.lastName}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="email" class="col-form-label fs-4 fw-bold">Email: </form:label>
+						<form:errors path="email" class="text-danger"></form:errors>
+						<form:input type="email" path="email" class="form-control" value="${user.email}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="address" class="col-form-label fs-4 fw-bold">Address: </form:label>
+						<form:errors path="address" class="text-danger"></form:errors>
+						<form:input path="address" class="form-control" value="${user.address}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="city" class="col-form-label fs-4 fw-bold">City: </form:label>
+						<form:errors path="city" class="text-danger"></form:errors>
+						<form:input path="city" class="form-control" value="${user.city}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="state"
+							class="col-sm-2 col-form-label fs-4 fw-bold ms-2 ps-0">State: </form:label>
+						<form:errors path="state" class="text-danger"></form:errors>
+						<div class="col-sm-10 ps-0">
+							<form:select path="state" class="form-control ps-0" value="${user.state}">
+								<form:option value="">Select State</form:option>
+								<form:option value="AL">Alabama</form:option>
+								<form:option value="AK">Alaska</form:option>
+								<form:option value="AZ">Arizona</form:option>
+								<form:option value="AR">Arkansas</form:option>
+								<form:option value="CA">California</form:option>
+								<form:option value="CO">Colorado</form:option>
+								<form:option value="CT">Connecticut</form:option>
+								<form:option value="DE">Delaware</form:option>
+								<form:option value="DC">District Of Columbia</form:option>
+								<form:option value="FL">Florida</form:option>
+								<form:option value="GA">Georgia</form:option>
+								<form:option value="HI">Hawaii</form:option>
+								<form:option value="ID">Idaho</form:option>
+								<form:option value="IL">Illinois</form:option>
+								<form:option value="IN">Indiana</form:option>
+								<form:option value="IA">Iowa</form:option>
+								<form:option value="KS">Kansas</form:option>
+								<form:option value="KY">Kentucky</form:option>
+								<form:option value="LA">Louisiana</form:option>
+								<form:option value="ME">Maine</form:option>
+								<form:option value="MD">Maryland</form:option>
+								<form:option value="MA">Massachusetts</form:option>
+								<form:option value="MI">Michigan</form:option>
+								<form:option value="MN">Minnesota</form:option>
+								<form:option value="MS">Mississippi</form:option>
+								<form:option value="MO">Missouri</form:option>
+								<form:option value="MT">Montana</form:option>
+								<form:option value="NE">Nebraska</form:option>
+								<form:option value="NV">Nevada</form:option>
+								<form:option value="NH">New Hampshire</form:option>
+								<form:option value="NJ">New Jersey</form:option>
+								<form:option value="NM">New Mexico</form:option>
+								<form:option value="NY">New York</form:option>
+								<form:option value="NC">North Carolina</form:option>
+								<form:option value="ND">North Dakota</form:option>
+								<form:option value="OH">Ohio</form:option>
+								<form:option value="OK">Oklahoma</form:option>
+								<form:option value="OR">Oregon</form:option>
+								<form:option value="PA">Pennsylvania</form:option>
+								<form:option value="RI">Rhode Island</form:option>
+								<form:option value="SC">South Carolina</form:option>
+								<form:option value="SD">South Dakota</form:option>
+								<form:option value="TN">Tennessee</form:option>
+								<form:option value="TX">Texas</form:option>
+								<form:option value="UT">Utah</form:option>
+								<form:option value="VT">Vermont</form:option>
+								<form:option value="VA">Virginia</form:option>
+								<form:option value="WA">Washington</form:option>
+								<form:option value="WV">West Virginia</form:option>
+								<form:option value="WI">Wisconsin</form:option>
+								<form:option value="WY">Wyoming</form:option>
+							</form:select>
+						</div>
+					</div>
+					<div class="form-group row">
+						<form:label path="password"
+							class="col-sm-2 col-form-label fs-4 fw-bold">Password: </form:label>
+						<form:errors path="password" class="text-danger"></form:errors>
+						<form:input type="password" path="password" class="form-control" value="${user.password}"/>
+					</div>
+					<div class="form-group row">
+						<form:label path="confirm"
+							class="col-sm-2 col-form-label fs-4 fw-bold">Confirm: </form:label>
+						<form:errors path="confirm" class="text-danger"></form:errors>
+						<form:input type="password" path="confirm" class="form-control" value="${user.password}"/>
+					</div>
+					<div class="form-group text-right">
+						<button class="btn btn-danger btn-lg mt-2 mt-4 px-3">Update</button>
+					</div>
+				</form:form>
+			</div>
+			<div class="col m-5 d-flex flex-column">
+				<h1>Past Orders</h1>
+				<c:forEach var="pizza" items="${pizzas}">
+					<div class="m-5 p-3 border border-danger rounded bg-light">
+						<h4><c:out value="${pizza.createdAt}"/></h4>
+						<h5><c:out value="${pizza.size}"/> - <c:out value="${pizza.toppings}"/></h5>
+					</div>
+				</c:forEach>
+				
+			</div>
+		</div>
 
 	<!-- Footer -->
-	<footer class="bg-dark text-white text-center py-4 mt-5 fixed-bottom">
+	<footer class="bg-dark text-white text-center py-4 mt-5">
 		<div class="container">
 			<p>&copy; 2024 Crusty's Pizzaria. All rights reserved.</p>
 			<!-- Facebook and Instagram icons -->

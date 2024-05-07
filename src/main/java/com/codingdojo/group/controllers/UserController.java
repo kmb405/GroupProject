@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import com.codingdojo.group.models.LoginUser;
 import com.codingdojo.group.models.Pizza;
@@ -45,7 +46,7 @@ public class UserController {
     }
     
     @GetMapping("/account/{id}")
-    public String account(@PathVariable("id") Long userId, Model model, HttpSession session) {
+    public String account(@PathVariable("id") Long userId, Model model, HttpSession session, @ModelAttribute("editUser") User editUser) {
 
 		Long userSessionId = (Long) session.getAttribute("userId");
     	
@@ -54,7 +55,7 @@ public class UserController {
     	}
     	List<Pizza> pizzas = pizzaServ.findAllById(userId);
     	User user = userServ.findById(userId);
-    	model.addAttribute("pizza", pizzas);
+    	model.addAttribute("pizzas", pizzas);
     	model.addAttribute("user", user);
     	return "accountPage.jsp";
     }
@@ -115,6 +116,26 @@ public class UserController {
     	}
     
         return "redirect:/quickPage";
+    }
+    
+    @PutMapping("/editUser")
+    public String editUser(@Valid @ModelAttribute("editUser") User editUser, BindingResult result, Model model, HttpSession session) {
+    	Long userId = (Long) session.getAttribute("userId");
+        
+    	if(userId==null) {
+    		return "redirect:/";
+    	}
+		if(result.hasErrors()) {
+			List<Pizza> pizzas = pizzaServ.findAllById(userId);
+	    	User user = userServ.findById(userId);
+	    	model.addAttribute("pizza", pizzas);
+	    	model.addAttribute("user", user);
+	    	return "accountPage.jsp";
+		} else {
+			userServ.updateUser(editUser);;
+			return "redirect:/account/" + userId;
+		}
+    	
     }
     
 }

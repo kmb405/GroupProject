@@ -22,6 +22,18 @@ public class UserService {
 		userRepo.save(p);
 	}
 	
+	public void updateUser(User p) {
+		User oldUser = userRepo.findById(p.getId()).get();
+		oldUser.setFirstName(p.getFirstName());
+		oldUser.setLastName(p.getLastName());
+		oldUser.setEmail(p.getEmail());
+		oldUser.setAddress(p.getAddress());
+		oldUser.setCity(p.getCity());
+		oldUser.setState(p.getState());
+		oldUser.setPassword(p.getPassword());
+		userRepo.save(oldUser);
+	}
+	
 	public User findById(Long id) {
 		Optional<User> thisUser = userRepo.findById(id);
 		if (thisUser.isPresent()) {
