@@ -2,7 +2,7 @@ package com.codingdojo.group.models;
 
 import java.util.Date;
 import java.util.List;
-
+import java.util.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import jakarta.persistence.CascadeType;
@@ -12,6 +12,9 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.PrePersist;
 import jakarta.persistence.PreUpdate;
@@ -71,6 +74,24 @@ public class User {
 	
 	@OneToMany(mappedBy="user", cascade=CascadeType.ALL, fetch=FetchType.LAZY)
 	private List<Pizza> pizza;
+	
+
+	// add this many to many table since a user can have multiple favorite pizzas, 
+	// and a pizza can be a favorite of multiple users.
+	@ManyToMany
+    @JoinTable(name = "user_favorite_pizzas",
+               joinColumns = @JoinColumn(name = "user_id"),
+               inverseJoinColumns = @JoinColumn(name = "pizza_id"))
+    private Set<Pizza> favoritePizzas = new HashSet<>();
+	
+	
+	public Set<Pizza> getFavoritePizzas() {
+		return favoritePizzas;
+	}
+
+	public void setFavoritePizzas(Set<Pizza> favoritePizzas) {
+		this.favoritePizzas = favoritePizzas;
+	}
 	
 	public User() {
 		

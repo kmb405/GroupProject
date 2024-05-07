@@ -51,4 +51,8 @@ public class PizzaService {
 	public void deletePizza(Long id) {
 		pizzaRepo.deleteById(id);
 	}
+	
+	public List<Pizza> getAllOrdersSortedByCreatedAtDesc() {
+        return pizzaRepo.findAllByOrderByCreatedAtDesc();
+    }
 }
