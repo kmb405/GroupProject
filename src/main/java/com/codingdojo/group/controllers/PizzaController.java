@@ -120,7 +120,8 @@ public class PizzaController {
     }
     
     @GetMapping("/updatePizza/{id}")
-    public String updatePizza(@PathVariable("id") Long id, Model model, HttpSession session, @ModelAttribute("editPizza") Pizza editPizza) {
+    public String updatePizza(@PathVariable("id") Long id, Model model, HttpSession session, 
+    		@ModelAttribute("editPizza") Pizza editPizza) {
 
 		Long userId = (Long) session.getAttribute("userId");
     	
@@ -150,7 +151,9 @@ public class PizzaController {
     
     
     @PostMapping("/newPizza")
-    public String newPizza(@Valid @ModelAttribute("newPizza") Pizza newPizza, BindingResult result, HttpSession session, Model model) {
+    public String newPizza(@Valid @ModelAttribute("newPizza") Pizza newPizza, 
+    		BindingResult result, HttpSession session, Model model) {
+    	
     	System.out.print(newPizza.getUser().getId());
 		Long userId = (Long) session.getAttribute("userId");
     	
@@ -192,7 +195,8 @@ public class PizzaController {
     }
     
     @PutMapping("/editPizza")
-    public String editPizza(@Valid @ModelAttribute("editPizza") Pizza editPizza, BindingResult result, HttpSession session, Model model) {
+    public String editPizza(@Valid @ModelAttribute("editPizza") Pizza editPizza, BindingResult result, 
+    		HttpSession session, Model model) {
 
 		Long userId = (Long) session.getAttribute("userId");
     	

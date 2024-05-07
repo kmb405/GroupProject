@@ -178,6 +178,7 @@ body {
 					</div>
 				</form:form>
 			</div>
+			
 			<div class="col m-5 d-flex flex-column">
 				<h1>Past Orders</h1>
 				<c:forEach var="pizza" items="${pizzas}">
@@ -188,6 +189,7 @@ body {
 				</c:forEach>
 				
 			</div>
+			
 		</div>
 
 	<!-- Footer -->
