@@ -115,12 +115,14 @@
 			<h4>QTY: <span class="items">${pizza.getQuantity()}</span></h4>
 			<h4>SIZE: <span class="items">${pizza.getSize()}</span> </h4>
 			<h4>CRUST: <span class="items">${pizza.getCrust()}</span></h4>
+			<h4>TOPPINGS: <span class="items">${tempToppings}</span></h4>
 			<h4>TOPPINGS: <span class="items">${pizza.getToppings()}</span></h4>
 			<c:set var="tax" value="0.1"/>
 			<c:set var="price" value="10.00"/>
 			<c:if test="${pizza.size == 'Small'}">
 				<h3>PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </h3>
 				<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
 			
 				<h3> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></h3>
 			</c:if>

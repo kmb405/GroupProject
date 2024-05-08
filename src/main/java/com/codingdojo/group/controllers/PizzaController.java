@@ -66,7 +66,7 @@ public class PizzaController {
 		// for now, this works but sometimes generates numbers that
     	// pull from the pizza list but if that pizza has been deleted
     	// it will forward to a blank order.
-    	
+
     	
     	// Fave pizza attempt
     	if (pizzas.size()>0) {
@@ -144,6 +144,19 @@ public class PizzaController {
     		return "redirect:/login";
     	}
     	Pizza pizza = pizzaServ.findPizza(id);
+    	
+    
+    	//_____________Get toppings out of array
+    	
+    	List<String> toppings = pizza.getToppings();
+    	
+    	String tempToppings = String.join(", ", toppings);
+    	
+    	 	
+    	model.addAttribute("tempToppings", tempToppings);
+    	
+    	
+    	
     	model.addAttribute("pizza", pizza);
     	return "orderSumPage.jsp";
     }
