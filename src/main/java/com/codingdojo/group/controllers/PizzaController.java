@@ -48,15 +48,18 @@ public class PizzaController {
     	}
     	List<Pizza> pizzas = pizzaServ.allPizzas();
     	model.addAttribute("pizzas", pizzas);
-    	
+    	System.out.println(pizzas.size());
     	
     	// Random pizza generator 
-    	if (pizzas.size()>0) {
-    		Random randomGen = new Random();
-        	int randomPizzaNum = pizzaServ.allPizzas().size();
-        	int randomPizza = randomGen.nextInt(randomPizzaNum);
-        	model.addAttribute("randomPizza", randomPizza);
-    	}
+    	
+		Random randomGen = new Random();
+    	int randomPizzaSize = pizzaServ.allPizzas().size();
+    	System.out.println(randomPizzaSize);
+    	int randomPizzaNum = randomGen.nextInt(randomPizzaSize-1)+1;
+    	System.out.println(randomPizzaNum);
+    	Pizza randomPizza = pizzas.get(randomPizzaNum);
+    	model.addAttribute("randomPizza", randomPizza.getId());
+    	
     	    		
 		// for now, this works but sometimes generates numbers that
     	// pull from the pizza list but if that pizza has been deleted
