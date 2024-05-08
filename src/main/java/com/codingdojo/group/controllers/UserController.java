@@ -54,9 +54,13 @@ public class UserController {
     		return "redirect:/login";
     	}
     	List<Pizza> pizzas = pizzaServ.getAllOrdersSortedByCreatedAtDesc();
+    	
     	User user = userServ.findById(userId);
     	model.addAttribute("pizzas", pizzas);
     	model.addAttribute("user", user);
+    	
+
+    	
     	return "accountPage.jsp";
     }
     

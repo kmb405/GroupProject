@@ -105,8 +105,8 @@ body {
 							class="col-sm-2 col-form-label fs-4 fw-bold ms-2 ps-0">State: </form:label>
 						<form:errors path="state" class="text-danger"></form:errors>
 						<div class="col-sm-10 ps-0">
-							<form:select path="state" class="form-control ps-0" value="${user.state}">
-								<form:option value="">Select State</form:option>
+							<form:select path="state" class="form-control ps-0">
+								<form:option value=""><c:out value="${user.state }"></c:out></form:option> 
 								<form:option value="AL">Alabama</form:option>
 								<form:option value="AK">Alaska</form:option>
 								<form:option value="AZ">Arizona</form:option>
@@ -184,7 +184,14 @@ body {
 				<c:forEach var="pizza" items="${pizzas}">
 					<div class="m-5 p-3 border border-danger rounded bg-light">
 						<h4><c:out value="${pizza.createdAt}"/></h4>
-						<h5><c:out value="${pizza.size}"/> - <c:out value="${pizza.toppings}"/></h5>
+						<h5><c:out value="${pizza.size}"/> - </h5>
+						
+							<c:forEach var="topping" items="${pizza.toppings}">
+						
+								<h5 style="display: inline-block"><c:out value="${topping} "/></h5>
+						 
+						 	</c:forEach>
+						 
 					</div>
 				</c:forEach>
 				
