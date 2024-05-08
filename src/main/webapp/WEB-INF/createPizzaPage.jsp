@@ -139,7 +139,7 @@
 					
 					
 					<form:label path="quantity">QTY: </form:label>
-						<form:input type="number" min="1" max="100" path="quantity" style="border: black solid 2px;"></form:input>
+						<form:input type="number" min="1" max="100" path="quantity" value="1" style="border: black solid 2px;"></form:input>
 					
 				
 				

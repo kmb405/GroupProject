@@ -48,32 +48,33 @@ public class PizzaController {
     	}
     	List<Pizza> pizzas = pizzaServ.allPizzas();
     	model.addAttribute("pizzas", pizzas);
-    	
+    	System.out.println(pizzas.size());
     	
     	// Random pizza generator 
-    	
-    	Random randomGen = new Random();
-    	int randomPizzaNum = pizzaServ.allPizzas().size();
-    	
-    	int randomPizza = randomGen.nextInt(randomPizzaNum);
+    	if (pizzas.size()>0) {
     		
-    		model.addAttribute("randomPizza", randomPizza);
-    		
+    		Random randomGen = new Random();
+    		int randomPizzaSize = pizzaServ.allPizzas().size();
+    		System.out.println(randomPizzaSize);
+    		int randomPizzaNum = randomGen.nextInt(randomPizzaSize-1)+1;
+    		System.out.println(randomPizzaNum);
+    		Pizza randomPizza = pizzas.get(randomPizzaNum);
+    		model.addAttribute("randomPizza", randomPizza.getId());
+    	}
+    	
+    	    		
 		// for now, this works but sometimes generates numbers that
     	// pull from the pizza list but if that pizza has been deleted
     	// it will forward to a blank order.
-    		
 
     	
-    	
-    	
     	// Fave pizza attempt
-    	
-    	List<Pizza> favPizza = userServ.findById(userId).getPizza();
-    	
-    	Long tempId = favPizza.get(0).getId();
-    		 
-    	model.addAttribute("favPizza", tempId);
+    	if (pizzas.size()>0) {
+    		Pizza favPizza = pizzaServ.favoritePizza(userId);
+    		Long favId = favPizza.getId(); 
+    		System.out.println(favId);
+    		model.addAttribute("favPizza", favId);
+    	}
     	
     	// For now, fav pizza will order the first pizza in the User's pizza orders ^
     	
@@ -143,6 +144,19 @@ public class PizzaController {
     		return "redirect:/login";
     	}
     	Pizza pizza = pizzaServ.findPizza(id);
+    	
+    
+    	//_____________Get toppings out of array
+    	
+    	List<String> toppings = pizza.getToppings();
+    	
+    	String tempToppings = String.join(", ", toppings);
+    	
+    	 	
+    	model.addAttribute("tempToppings", tempToppings);
+    	
+    	
+    	
     	model.addAttribute("pizza", pizza);
     	return "orderSumPage.jsp";
     }
