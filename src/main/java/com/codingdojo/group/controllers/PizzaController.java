@@ -51,29 +51,25 @@ public class PizzaController {
     	
     	
     	// Random pizza generator 
-    	
-    	Random randomGen = new Random();
-    	int randomPizzaNum = pizzaServ.allPizzas().size();
-    	
-    	int randomPizza = randomGen.nextInt(randomPizzaNum);
-    		
-    		model.addAttribute("randomPizza", randomPizza);
-    		
+    	if (pizzas.size()>0) {
+    		Random randomGen = new Random();
+        	int randomPizzaNum = pizzaServ.allPizzas().size();
+        	int randomPizza = randomGen.nextInt(randomPizzaNum);
+        	model.addAttribute("randomPizza", randomPizza);
+    	}
+    	    		
 		// for now, this works but sometimes generates numbers that
     	// pull from the pizza list but if that pizza has been deleted
     	// it will forward to a blank order.
-    		
-
-    	
     	
     	
     	// Fave pizza attempt
-    	
-    	List<Pizza> favPizza = userServ.findById(userId).getPizza();
-    	
-    	Long tempId = favPizza.get(0).getId();
-    		 
-    	model.addAttribute("favPizza", tempId);
+    	if (pizzas.size()>0) {
+    		Pizza favPizza = pizzaServ.favoritePizza(userId);
+    		Long favId = favPizza.getId(); 
+    		System.out.println(favId);
+    		model.addAttribute("favPizza", favId);
+    	}
     	
     	// For now, fav pizza will order the first pizza in the User's pizza orders ^
     	
