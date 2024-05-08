@@ -79,7 +79,7 @@ body {
 					Pizzaria</span>
 				<ul class="navbar-nav mt-5 me-3">
 					<li class="nav-item"><a class="nav-link btn btn-danger"
-						href="/register">Order Now</a></li>
+						href="/login">Order Now</a></li>
 
 				</ul>
 			</div>

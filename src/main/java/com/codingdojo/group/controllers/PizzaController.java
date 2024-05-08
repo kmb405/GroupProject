@@ -47,21 +47,39 @@ public class PizzaController {
     		return "redirect:/login";
     	}
     	List<Pizza> pizzas = pizzaServ.allPizzas();
-    	model.addAttribute("pizzas", pizzas);
     	System.out.println(pizzas.size());
-    	
-    	// Random pizza generator 
-    	if (pizzas.size()>0) {
+    	if (pizzas.size()==0) {
+    		Pizza newPizza = new Pizza();
+    		List<String> toppings = new ArrayList<>();
+    		toppings.add("cheese");
+    		newPizza.setDeliveryMethod("Carry Out");
+    		newPizza.setCrust("Thin Crust");
+    		newPizza.setSize("Large");
+    		newPizza.setQuantity("1");
+    		newPizza.setToppings(toppings);
+    		pizzaServ.createPizza(newPizza);
+    		List<Pizza> newPizzas = pizzaServ.allPizzas();
+    		model.addAttribute("pizzas", newPizzas);
     		
-    		Random randomGen = new Random();
-    		int randomPizzaSize = pizzaServ.allPizzas().size();
-    		System.out.println(randomPizzaSize);
-    		int randomPizzaNum = randomGen.nextInt(randomPizzaSize-1)+1;
-    		System.out.println(randomPizzaNum);
-    		Pizza randomPizza = pizzas.get(randomPizzaNum);
-    		model.addAttribute("randomPizza", randomPizza.getId());
     	}
+//    	
+//    	// Random pizza generator 
     	
+    		
+		Random randomGen = new Random();
+		int randomPizzaSize = pizzaServ.allPizzas().size();
+		System.out.println("Size" + randomPizzaSize);
+		
+		if (randomPizzaSize>0) {
+			int randomPizzaNum = randomGen.nextInt(randomPizzaSize);
+			System.out.println("Num" + randomPizzaNum);
+			Pizza randomPizza = pizzas.get(randomPizzaNum);
+			model.addAttribute("randomPizza", randomPizza.getId());
+		} else {
+			model.addAttribute("randomPizza", 1);
+		}
+
+//    	
     	    		
 		// for now, this works but sometimes generates numbers that
     	// pull from the pizza list but if that pizza has been deleted
@@ -69,12 +87,19 @@ public class PizzaController {
 
     	
     	// Fave pizza attempt
-    	if (pizzas.size()>0) {
-    		Pizza favPizza = pizzaServ.favoritePizza(userId);
-    		Long favId = favPizza.getId(); 
-    		System.out.println(favId);
-    		model.addAttribute("favPizza", favId);
-    	}
+    	
+		Pizza favPizza = pizzaServ.favoritePizza(userId);
+		System.out.println(favPizza);
+		Long favId = favPizza.getId(); 
+		System.out.println(favId);
+		if (favId==null) {
+			model.addAttribute("favPizza", 1);
+		} else {
+			
+			model.addAttribute("favPizza", favId);
+		}
+		
+	
     	
     	// For now, fav pizza will order the first pizza in the User's pizza orders ^
     	

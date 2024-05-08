@@ -116,7 +116,6 @@
 			<h4>SIZE: <span class="items">${pizza.getSize()}</span> </h4>
 			<h4>CRUST: <span class="items">${pizza.getCrust()}</span></h4>
 			<h4>TOPPINGS: <span class="items">${tempToppings}</span></h4>
-			<h4>TOPPINGS: <span class="items">${pizza.getToppings()}</span></h4>
 			<c:set var="tax" value="0.1"/>
 			<c:set var="price" value="10.00"/>
 			<c:if test="${pizza.size == 'Small'}">
