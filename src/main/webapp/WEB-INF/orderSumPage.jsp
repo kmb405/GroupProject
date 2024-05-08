@@ -116,11 +116,38 @@
 			<h4>SIZE: <span class="items">${pizza.getSize()}</span> </h4>
 			<h4>CRUST: <span class="items">${pizza.getCrust()}</span></h4>
 			<h4>TOPPINGS: <span class="items">${tempToppings}</span></h4>
+			<h4>TOPPINGS: <span class="items">${pizza.getToppings()}</span></h4>
+			<c:set var="tax" value="0.1"/>
+			<c:set var="price" value="10.00"/>
+			<c:if test="${pizza.size == 'Small'}">
+				<h3>PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </h3>
+				<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
 			
-			<h3>PRICE: $<span>${pizza.getQuantity() * 17.00}</span> </h3>
+				<h3> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></h3>
+			</c:if>
+			<c:set var="price" value="12.00"/>
+			<c:if test="${pizza.size == 'Medium'}">
+				<h3>PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </h3>
+				<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
+			
+				<h3> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></h3>
+			</c:if>
+			<c:set var="price" value="14.00"/>
+			<c:if test="${pizza.size == 'Large'}">
+				<h3>PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </h3>
+				<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
+			
+				<h3> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></h3>
+			</c:if>
+			<c:set var="price" value="16.00"/>
+			<c:if test="${pizza.size == 'X-Large'}">
+				<h3>PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </h3>
+				<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
+			
+				<h3> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></h3>
+			</c:if>
 			<p style="width: 100%; font-weight: bold;">______________________________________________________</p>
-			
-			<h3> TOTAL: $<span>${pizza.getQuantity() * 18.00}</span></h3>
 				
 				<div class="container buttons">
 				
@@ -139,7 +166,7 @@
 
 
 	<!-- Footer -->
-	<footer class="bg-dark text-white text-center py-4 mt-5 fixed-bottom">
+	<footer class="bg-dark text-white text-center py-4 mt-5">
 		<div class="container">
 			<p>&copy; 2024 Crusty's Pizzaria. All rights reserved.</p>
 			<!-- Facebook and Instagram icons -->
