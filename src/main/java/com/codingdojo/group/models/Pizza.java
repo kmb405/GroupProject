@@ -39,7 +39,7 @@ public class Pizza {
 	@NotNull
 	private String quantity;
 	
-	@NotEmpty
+	@NotEmpty(message="At least one topping is required!")
 	private List<String> toppings;
 	
 	@Column(updatable=false)

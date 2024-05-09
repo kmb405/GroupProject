@@ -201,7 +201,7 @@ public class PizzaController {
     	}
     	
     	if(result.hasErrors()) {
-    		
+    		System.out.print("test1111111111");
         	ArrayList<String> pizzaTops = new ArrayList<String>();
         	
     		pizzaTops.add("cheese");
@@ -227,6 +227,7 @@ public class PizzaController {
     	
     		return "createPizzaPage.jsp";
     	} else {
+    		System.out.print("test22222222");
     		pizzaServ.createPizza(newPizza);
     		return "redirect:/orderSum/" + newPizza.getId();
     	}
@@ -260,8 +261,8 @@ public class PizzaController {
     	if(userId==null) {
     		return "redirect:/";
     	}
-    	
+    	System.out.print(id);
     	pizzaServ.deletePizza(id);
-    	return "redirect:/orderSum/" + userId;
+    	return "redirect:/createPizza";
     }
 }
