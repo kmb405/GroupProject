@@ -187,7 +187,7 @@ public class PizzaController {
     	
     	if ( pizza == null ) {
     		
-    		return "redirect:/createPizza";
+    		return "orderSumPage.jsp";
     	}
     		
     		

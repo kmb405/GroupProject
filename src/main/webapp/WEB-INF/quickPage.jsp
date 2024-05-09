@@ -85,11 +85,7 @@ body {
 					<li class="nav-item"><a class="m-2 nav-link btn fs-5"
 						href="/logout">Logout</a></li>
 
-					<li class="nav-item"><a class="m-2 nav-link btn" href="/createPizza">Order</a></li>
-					
-					<li class="nav-item"><a class="m-2 nav-link btn" href="/account/${userId}">Account</a></li>
 			
-					<li class="nav-item"><a class="m-2 nav-link btn" href="/logout">Logout</a></li>
 
 				</ul>
 			</div>

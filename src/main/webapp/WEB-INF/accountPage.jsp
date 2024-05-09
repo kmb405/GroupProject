@@ -40,7 +40,7 @@ body {
 	font-family: "Titan One", sans-serif;
 }
 
-h4, h5{
+h4, h5 {
 	font-family: "Titan One", sans-serif;
 	color: red;
 }
@@ -49,14 +49,18 @@ h5 {
 	border-bottom: 3px solid black;
 }
 
-.prices{
-
-font-weight: bold;
-font-size: 20px;
-margin-bottom: 5px;
-text-align: right;
-
+.prices {
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 5px;
+	text-align: right;
 }
+
+
+.footer-container {
+    width: 100%;
+}
+
 </style>
 
 </head>
@@ -79,8 +83,8 @@ text-align: right;
 					<li class="nav-item"><a class="m-2 nav-link btn fs-5"
 						href="/orderSum/${userId}">Order</a></li>
 
-					<li class="nav-item"><a class="m-2 nav-link btn"
-						href="/createPizza">Order</a></li>
+					<!-- 	<li class="nav-item"><a class="m-2 nav-link btn"
+						href="/createPizza">Order</a></li> -->
 
 
 					<li class="nav-item"><a class="m-2 nav-link btn fs-5"
@@ -98,8 +102,7 @@ text-align: right;
 	<!-- Add form that autofills current user information and shows past orders -->
 	<div class="row">
 		<div class="col m-5">
-			<h1 class="ps-5">Account Info</h1>
-
+			<h1>Account Info</h1>
 			<form:form action="/editUser" method="post" modelAttribute="editUser"
 				class="col p-5 m-2 ">
 				<input type="hidden" name="_method" value="put">
@@ -138,10 +141,9 @@ text-align: right;
 						class="col-sm-2 col-form-label fs-4 fw-bold ms-2 ps-0">State: </form:label>
 					<form:errors path="state" class="text-danger"></form:errors>
 					<div class="col-sm-10 ps-0">
-						<form:select path="state" class="form-control ps-0">
-							<form:option value="">
-								<c:out value="${user.state }"></c:out>
-							</form:option>
+						<form:select path="state" class="form-control ps-0"
+							value="${user.state}">
+							<form:option value="">${user.state}</form:option>
 							<form:option value="AL">Alabama</form:option>
 							<form:option value="AK">Alaska</form:option>
 							<form:option value="AZ">Arizona</form:option>
@@ -194,7 +196,9 @@ text-align: right;
 							<form:option value="WI">Wisconsin</form:option>
 							<form:option value="WY">Wyoming</form:option>
 						</form:select>
-=======
+
+
+
 			<form:form action="/editUser" method="post" modelAttribute="editUser" class="col p-5 m-2 ">
 			<input type="hidden" name="_method" value="put">
 				<form:input path="id" hidden="hidden" value="${user.id}"/>
@@ -404,6 +408,7 @@ text-align: right;
 					</c:forEach>
 						 
 
+
 					</div>
 				</div>
 				<div class="form-group row">
@@ -425,28 +430,180 @@ text-align: right;
 				</div>
 			</form:form>
 		</div>
-		
-			<!-- redundant --> 
-			
-<%-- 		<div class="col m-5 d-flex flex-column">
-			<h1 class="ps-5 mb-5">Past Orders</h1>
+
+		<div class="col m-5 d-flex flex-column">
+
+
+
+			<h1 style="color: red">* FAVE PIZZA *</h1>
+			<div class="m-5 p-3 border border-danger rounded bg-light">
+
+				<h2 style="color: red">
+					<fmt:formatDate value="${favPizza.getCreatedAt()}"
+						pattern="MM-dd-yyyy" />
+				</h2>
+				<h2 style="border-bottom: 3px solid black; color: red">
+					${favPizza.getSize()}</h2>
+
+				<c:forEach var="toppings" items="${favPizza.getToppings()}">
+					<h2 style="border-bottom: 3px solid black; color: red">
+						<c:out value="${toppings}"></c:out>
+					</h2>
+
+					<c:set var="tax" value="0.1" />
+					<c:set var="price" value="10.00" />
+					<c:if test="${favPizza.size == 'Small'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="12.00" />
+					<c:if test="${favPizza.size == 'Medium'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="14.00" />
+					<c:if test="${favPizza.size == 'Large'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="16.00" />
+					<c:if test="${favPizza.size == 'X-Large'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+
+				</c:forEach>
+
+			</div>
+
+
+			<h2>Past Orders</h2>
 			<c:forEach var="pizza" items="${pizzas}">
-				<div class="mt-5 ps-5 ">
+				<div class="col m-5 d-flex flex-column">
 					<h4>
 						<fmt:formatDate value="${pizza.createdAt}" pattern="MM-dd-yyyy" />
 					</h4>
-
-					<h5 class="pb-5">
-						<c:out value="${pizza.size}"  />
-						<c:forEach var="topping" items="${pizza.toppings}">
-							<c:out value="${topping}" />
-						</c:forEach>
-                
+					<!-- add a checkbox for favorite pizza feature -->
+					<label style="margin-left: 1px; margin-top: 1px;">Favorite</label>
+					<input type="checkbox" name=favoritePizzas value="${pizza.id}">
+					<h5>
+						<c:out value="${pizza.size}" />
+						-
 					</h5>
+
+					<c:forEach var="topping" items="${pizza.toppings}">
+
+						<h5 style="display: inline-block">
+							<c:out value="${topping} " />
+						</h5>
+
+					</c:forEach>
+
+					<c:set var="tax" value="0.1" />
+					<c:set var="price" value="10.00" />
+					<c:if test="${pizza.size == 'Small'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="12.00" />
+					<c:if test="${pizza.size == 'Medium'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="14.00" />
+					<c:if test="${pizza.size == 'Large'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<c:set var="price" value="16.00" />
+					<c:if test="${pizza.size == 'X-Large'}">
+						<p class="prices">
+							PRICE: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price}" type="currency" /></span>
+						</p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+
+						<p class="prices">
+							TOTAL: <span><fmt:formatNumber
+									value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}"
+									type="currency" /></span>
+						</p>
+					</c:if>
+					<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
 				</div>
 			</c:forEach>
 
-		</div> --%>
+
+
+
+		
 
 
 
@@ -455,20 +612,20 @@ text-align: right;
 
 
 
-		<!-- Footer -->
-		<footer class="bg-dark text-white text-center py-4 mt-5">
-			<div class="container">
-				<p>&copy; 2024 Crusty's Pizzaria. All rights reserved.</p>
-				<!-- Facebook and Instagram icons -->
-				<div>
-					<a href="#" target="_blank" class="text-dark mx-2"> <img
-						src="/images/fb.PNG" alt="Facebook" width="30" height="30">
-					</a> <a href="#" target="_blank" class="text-dark mx-2"> <img
-						src="/images/ig.PNG" alt="Instagram" width="30" height="30">
-					</a>
-				</div>
+
+<!-- 	<footer class="bg-dark text-white text-center py-4 mt-5 pt-5">
+		<div class="container-fluid">
+			<p>&copy; 2024 Crusty's Pizzaria. All rights reserved.</p>
+			Facebook and Instagram icons
+			<div>
+				<a href="#" target="_blank" class="text-dark mx-2"> <img
+					src="/images/fb.PNG" alt="Facebook" width="30" height="30">
+				</a> <a href="#" target="_blank" class="text-dark mx-2"> <img
+					src="/images/ig.PNG" alt="Instagram" width="30" height="30">
+				</a>
 			</div>
-		</footer>
-		<!-- End of Footer -->
+		</div>
+	</footer> -->
+	
 </body>
 </html>
