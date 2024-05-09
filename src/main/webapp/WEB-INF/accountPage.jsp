@@ -36,17 +36,26 @@ body {
 	/* Other CSS styles */
 }
 
-#titleName, h1 {
+#titleName, h1, h2 {
 	font-family: "Titan One", sans-serif;
 }
 
-h4, h5 {
+h4, h5{
 	font-family: "Titan One", sans-serif;
 	color: red;
 }
 
 h5 {
 	border-bottom: 3px solid black;
+
+}
+
+.prices{
+
+font-weight: bold;
+font-size: 20px;
+margin-bottom: 5px;
+text-align: right;
 
 }
 </style>
@@ -194,7 +203,57 @@ h5 {
 			</div>
 			
 			<div class="col m-5 d-flex flex-column">
-				<h1>Past Orders</h1>
+			
+			
+			
+				<h1 style="color: red" >* FAVE PIZZA * </h1>
+		<div class="m-5 p-3 border border-danger rounded bg-light">
+				
+				<h2 style="color:red" > ${favPizza.getCreatedAt()}</h2>
+				<h2 style="border-bottom: 3px solid black; color: red"> ${favPizza.getSize()}</h2>
+				
+			<c:forEach var="toppings" items="${favPizza.getToppings()}">		
+				<h2 style="border-bottom: 3px solid black; color: red"><c:out value="${toppings}"></c:out></h2>				 	
+						 	
+					<c:set var="tax" value="0.1"/>
+					<c:set var="price" value="10.00"/>
+					<c:if test="${favPizza.size == 'Small'}">
+						<p class="prices">PRICE: <span><fmt:formatNumber value="${favPizza.getQuantity() * price}" type="currency"/></span> </p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+		
+					
+						<p class="prices"> TOTAL: <span><fmt:formatNumber value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}" type="currency"/></span></p>
+					</c:if>
+					<c:set var="price" value="12.00"/>
+					<c:if test="${favPizza.size == 'Medium'}">
+						<p class="prices">PRICE: <span><fmt:formatNumber value="${favPizza.getQuantity() * price}" type="currency"/></span> </p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+					
+						<p class="prices"> TOTAL: <span><fmt:formatNumber value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}" type="currency"/></span></p>
+					</c:if>
+					<c:set var="price" value="14.00"/>
+					<c:if test="${favPizza.size == 'Large'}">
+						<p class="prices">PRICE: <span><fmt:formatNumber value="${favPizza.getQuantity() * price}" type="currency"/></span> </p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+					
+						<p class="prices"> TOTAL: <span><fmt:formatNumber value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}" type="currency"/></span></p>
+					</c:if>
+					<c:set var="price" value="16.00"/>
+					<c:if test="${favPizza.size == 'X-Large'}">
+						<p class="prices">PRICE: <span><fmt:formatNumber value="${favPizza.getQuantity() * price}" type="currency"/></span> </p>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+					
+						<p class="prices"> TOTAL: <span><fmt:formatNumber value="${favPizza.getQuantity() * price + favPizza.getQuantity() * price * tax}" type="currency"/></span></p>
+					</c:if>
+					<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+								 	
+				
+			</c:forEach>
+				
+		</div>			
+			
+			
+				<h2>Past Orders</h2>
 				<c:forEach var="pizza" items="${pizzas}">
 					<div class="m-5 p-3 border border-danger rounded bg-light">
 						<h4><c:out value="${pizza.createdAt}"/></h4>
@@ -208,6 +267,40 @@ h5 {
 								<h5 style="display: inline-block"><c:out value="${topping} "/></h5>
 						 
 						 	</c:forEach>
+						 	
+						<c:set var="tax" value="0.1"/>
+						<c:set var="price" value="10.00"/>
+						<c:if test="${pizza.size == 'Small'}">
+							<p class="prices">PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </p>
+							<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+			
+						
+							<p class="prices"> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></p>
+						</c:if>
+						<c:set var="price" value="12.00"/>
+						<c:if test="${pizza.size == 'Medium'}">
+							<p class="prices">PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </p>
+							<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+						
+							<p class="prices"> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></p>
+						</c:if>
+						<c:set var="price" value="14.00"/>
+						<c:if test="${pizza.size == 'Large'}">
+							<p class="prices">PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </p>
+							<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+						
+							<p class="prices"> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></p>
+						</c:if>
+						<c:set var="price" value="16.00"/>
+						<c:if test="${pizza.size == 'X-Large'}">
+							<p class="prices">PRICE: <span><fmt:formatNumber value="${pizza.getQuantity() * price}" type="currency"/></span> </p>
+							<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+						
+							<p class="prices"> TOTAL: <span><fmt:formatNumber value="${pizza.getQuantity() * price + pizza.getQuantity() * price * tax}" type="currency"/></span></p>
+						</c:if>
+						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
+									 	
+						 	
 						 
 					</div>
 				</c:forEach>
