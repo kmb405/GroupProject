@@ -99,8 +99,20 @@ public class PizzaController {
 			model.addAttribute("favPizza", favId);
 		}
 		
-	
-    	
+		
+		//Trying to get new id from session and put it in the accountSum URL so it directs 
+		// to the newest orderSum page. but not woking. 
+//		
+//			Long newPizzaId = (Long)session.getAttribute("newPizzaId");
+//			
+//			model.addAttribute("tempPizzaId", newPizzaId = (Long)pizzaServ.findPizza((String)newPizzaId));
+//			
+//			model.addAttribute("newPizzaId", pizzaServ.findPizza(newPizzaId));
+//			System.out.println(newPizzaId);
+			
+			
+			
+			
     	// For now, fav pizza will order the first pizza in the User's pizza orders ^
     	
     	
@@ -159,17 +171,27 @@ public class PizzaController {
     	return "updatePizzaPage.jsp";
     }
     
+   
     
     @GetMapping("/orderSum/{id}")
-    public String orderSum(@PathVariable("id") Long id, Model model, HttpSession session) {
+    public String orderSum(@PathVariable("id")Long id, Model model, HttpSession session) {
 
 		Long userId = (Long) session.getAttribute("userId");
     	
     	if(userId==null) {
     		return "redirect:/login";
     	}
-    	Pizza pizza = pizzaServ.findPizza(id);
     	
+    	 Long tempPizza = (Long) session.getAttribute("newPizzaId");
+    	
+    	Pizza pizza = pizzaServ.findPizza(tempPizza);
+    	
+    	if ( pizza == null ) {
+    		
+    		return "redirect:/createPizza";
+    	}
+    		
+    		
     
     	//_____________Get toppings out of array
     	
@@ -225,12 +247,26 @@ public class PizzaController {
     		
     	model.addAttribute("pizzaTops", pizzaTops);
     	
+    	
     		return "createPizzaPage.jsp";
     	} else {
     		pizzaServ.createPizza(newPizza);
+    		    		
+    		session.setAttribute("newPizzaId", newPizza.getId());
+    		
+    		Long tempPizza = (Long)session.getAttribute("newPizzaId");
+    		
+    		model.addAttribute("newPizzaId", tempPizza);
+    		
+    		System.out.println(tempPizza);
+    		
     		return "redirect:/orderSum/" + newPizza.getId();
     	}
-    
+    	
+
+    	
+    	
+    	
     }
     
     @PutMapping("/editPizza")
