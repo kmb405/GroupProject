@@ -181,10 +181,9 @@ public class PizzaController {
     	if(userId==null) {
     		return "redirect:/login";
     	}
+  
     	
-    	 Long tempPizza = (Long) session.getAttribute("newPizzaId");
-    	
-    	Pizza pizza = pizzaServ.findPizza(tempPizza);
+    	Pizza pizza = pizzaServ.findPizza(id);
     	
     	if ( pizza == null ) {
     		
