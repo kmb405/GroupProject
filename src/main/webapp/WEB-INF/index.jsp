@@ -23,7 +23,9 @@
 <!-- Google fonts links -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap"
+	rel="stylesheet">
 
 <style>
 body {
@@ -51,16 +53,14 @@ body {
 }
 
 .titan-one-regular {
-  font-family: "Titan One", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+	font-family: "Titan One", sans-serif;
+	font-weight: 400;
+	font-style: normal;
 }
 
 #titleName, h1 {
-	
-	font-family:"Titan One", sans-serif;
+	font-family: "Titan One", sans-serif;
 }
-
 </style>
 
 
@@ -75,7 +75,8 @@ body {
 					alt="CrustyMascot" width="130" height="130"
 					class="d-inline-block align-text-top ms-4">
 
-				</a> <span id="titleName" class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
+				</a> <span id="titleName"
+					class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
 				<ul class="navbar-nav mt-5 me-3">
 					<li class="nav-item"><a class="nav-link btn btn-danger"

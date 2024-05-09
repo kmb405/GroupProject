@@ -23,7 +23,9 @@
 <!-- Google fonts links -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap" rel="stylesheet">
+<link
+	href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap"
+	rel="stylesheet">
 
 <style>
 body {
@@ -34,11 +36,9 @@ body {
 	/* Other CSS styles */
 }
 
-#titleName{
-	font-family:"Titan One", sans-serif;
-
+#titleName, h2 {
+	font-family: "Titan One", sans-serif;
 }
-
 </style>
 
 </head>
@@ -50,7 +50,8 @@ body {
 					alt="CrustyMascot" width="130" height="130"
 					class="d-inline-block align-text-top ms-4">
 
-				</a> <span id="titleName" class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
+				</a> <span id="titleName"
+					class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
 				<ul class="navbar-nav mt-5 me-3">
 					<li class="nav-item"><a class="nav-link btn btn-danger px-4"
@@ -61,26 +62,37 @@ body {
 			</div>
 		</div>
 	</nav>
-	
-	<form:form action="/login" method="post" modelAttribute="newLogin" class="p-5 m-5 ">
-		<h2 class="text-dark fs-1 fw-bold">Login</h2>
-		<div class="form-group row">
-			<form:label path="email" class="col-sm-2 col-form-label fs-4 fw-bold">Email: </form:label>
-			<form:errors path="email" class="text-danger"></form:errors>
-			<form:input path="email" class="form-control" />
+
+	<div class="container-sm">
+		<div class="row justify-content-center">
+			<div class="col-sm-8">
+				<form:form action="/login" method="post" modelAttribute="newLogin"
+					class="p-5 m-5">
+					<h2 class="text-dark fs-1 fw-bold">Login</h2>
+					<div class="form-group row">
+						<form:label path="email"
+							class="col-sm-2 col-form-label fs-4 fw-bold">Email: </form:label>
+						<form:errors path="email" class="text-danger"></form:errors>
+						<form:input path="email" class="form-control" />
+					</div>
+					<div class="form-group row">
+						<form:label path="password"
+							class="col-sm-2 col-form-label fs-4 fw-bold">Password: </form:label>
+						<form:errors path="password" class="text-danger"></form:errors>
+						<form:input path="password" class="form-control" type="password" />
+					</div>
+					<div class="d-flexform-group text-righ">
+						<input type=submit
+							class="btn btn-danger btn-lg mt-2 mt-4 px-3 mb-3" value="Submit" />
+					</div>
+					<div class="pt-3 ">
+						<a href="/register" class="text-danger fs-4 fw-bold pt-5">Don't
+							Have an Account? Register</a>
+					</div>
+				</form:form>
+			</div>
 		</div>
-		<div class="form-group row">
-			<form:label path="password" class="col-sm-2 col-form-label fs-4 fw-bold">Password: </form:label>
-			<form:errors path="password" class="text-danger"></form:errors>
-			<form:input path="password" class="form-control" type="password" />
-		</div>
-		<div class="d-flexform-group text-righ">
-			<input type=submit class="btn btn-danger btn-lg mt-2 mt-4 px-3" value="Submit" />
-		</div>
-		<div class="pt-3 ">
-			<a href="/register" class="text-danger fs-4 fw-bold">Don't Have an Account?Register</a>
-		</div>
-	</form:form>
+	</div>
 
 	<!-- Footer -->
 	<footer class="bg-dark text-white text-center py-4 mt-5 fixed-bottom">
