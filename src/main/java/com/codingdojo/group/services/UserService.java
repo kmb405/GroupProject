@@ -2,6 +2,7 @@ package com.codingdojo.group.services;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +10,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.validation.BindingResult;
 
 import com.codingdojo.group.models.LoginUser;
+import com.codingdojo.group.models.Pizza;
 import com.codingdojo.group.models.User;
+import com.codingdojo.group.repositories.PizzaRepository;
 import com.codingdojo.group.repositories.UserRepository;
 
 @Service
@@ -17,6 +20,9 @@ public class UserService {
 	
 	@Autowired
 	private UserRepository userRepo;
+
+	@Autowired
+	private PizzaRepository pizzaRepo;
 
 	
 	public void createUser(User p) {
@@ -84,19 +90,19 @@ public class UserService {
 		
 	}
 	
-//	public void addPizzaToUserFavorites(Long userId, Long pizzaId) {
-//
-//        User user = userRepo.findById(userId).orElseThrow();
-//        Pizza pizza = pizzaRepository.findById(pizzaId).orElseThrow();
-//        
-//        user.getFavoritePizzas().add(pizza);
-//        userRepo.save(user);
-//    }
-//    
-//    public Set<Pizza> getUserFavoritePizzas(Long userId) {
-//        User user = userRepo.findById(userId).orElseThrow();
-//        return user.getFavoritePizzas();
-//    }
+	public void addPizzaToUserFavorites(Long userId, Long pizzaId) {
+
+        User user = userRepo.findById(userId).orElseThrow();
+        Pizza pizza = pizzaRepo.findById(pizzaId).orElseThrow();
+        
+        user.getFavoritePizzas().add(pizza);
+        userRepo.save(user);
+    }
+    
+    public Set<Pizza> getUserFavoritePizzas(Long userId) {
+        User user = userRepo.findById(userId).orElseThrow();
+        return user.getFavoritePizzas();
+    }
 
 	
 	

@@ -77,7 +77,7 @@ text-align: right;
 						href="/quickPage">Home</a></li>
 					<!-- Needs to show how many items are in order on any page -->
 					<li class="nav-item"><a class="m-2 nav-link btn"
-						href="/orderSum/${userId}">Order</a></li>
+						href="/createPizza">Order</a></li>
 
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/account/${userId}">Account</a></li>
@@ -257,6 +257,9 @@ text-align: right;
 				<c:forEach var="pizza" items="${pizzas}">
 					<div class="m-5 p-3 border border-danger rounded bg-light">
 						<h4><c:out value="${pizza.createdAt}"/></h4>
+						<!-- add a checkbox for favorite pizza feature -->
+						<label style="margin-left: 10px; margin-top: 10px;">Favorite</label>
+						<input type="checkbox" name=favoritePizzas value="${pizza.id}">
 						<h5><c:out value="${pizza.size}"/> - </h5>
 						
 							<c:forEach var="topping" items="${pizza.toppings}">
@@ -304,8 +307,10 @@ text-align: right;
 				
 			</div>
 		</div>
-
-		<div class="col m-5 d-flex flex-column">
+		
+			<!-- redundant --> 
+			
+<%-- 		<div class="col m-5 d-flex flex-column">
 			<h1 class="ps-5 mb-5">Past Orders</h1>
 			<c:forEach var="pizza" items="${pizzas}">
 				<div class="mt-5 ps-5 ">
@@ -320,7 +325,7 @@ text-align: right;
 				</div>
 			</c:forEach>
 
-		</div>
+		</div> --%>
 
 
 
