@@ -400,7 +400,8 @@ text-align: right;
 						</c:if>
 						<p class="prices" style="width: 100%; font-weight: bold;">______________________________________________________</p>
 									 	
-						 	
+						 </div>
+					</c:forEach>
 						 
 
 					</div>
