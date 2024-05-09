@@ -70,6 +70,16 @@ label {
 				</a> <span id="titleName"
 					class="navbar-text text-white fw-bold fs-1 mt-4">Crusty's
 					Pizzaria</span>
+
+				<ul class="navbar-nav mt-4">
+					<li class="nav-item"><a class="m-2 nav-link btn fs-5" href="/quickPage">Home</a></li>
+					<!-- Needs to show how many items are in order on any page -->
+					<li class="nav-item"><a class="m-2 nav-link btn fs-5" href="/orderSum/${userId}">Order</a></li>
+					
+					<li class="nav-item"><a class="m-2 nav-link btn fs-5" href="/account/${userId}">Account</a></li>
+			
+					<li class="nav-item"><a class="m-2 nav-link btn fs-5" href="/logout">Logout</a></li>
+
 				<ul class="navbar-nav">
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/quickPage">Home</a></li>
@@ -82,6 +92,7 @@ label {
 
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/logout">Logout</a></li>
+
 				</ul>
 			</div>
 		</div>
