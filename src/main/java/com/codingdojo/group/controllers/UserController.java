@@ -53,11 +53,14 @@ public class UserController {
     	if(userSessionId==null) {
     		return "redirect:/login";
     	}
-    	List<Pizza> pizzas = pizzaServ.getAllOrdersSortedByCreatedAtDesc();
+    	
+    	List<Pizza> pizzas = userServ.findById(userSessionId).getPizza();
     	
     	User user = userServ.findById(userId);
     	model.addAttribute("pizzas", pizzas);
     	model.addAttribute("user", user);
+  
+    	model.addAttribute("favPizza", pizzaServ.favoritePizza(userId));
     	
 
     	

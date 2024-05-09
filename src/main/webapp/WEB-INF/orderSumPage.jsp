@@ -92,6 +92,7 @@ h3 {
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/quickPage">Home</a></li>
 					<!-- Needs to show how many items are in order on any page -->
+
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/orderSum/${userId}">Order</a></li>
 
@@ -100,6 +101,13 @@ h3 {
 
 					<li class="nav-item"><a class="m-2 nav-link btn"
 						href="/logout">Logout</a></li>
+
+					<li class="nav-item"><a class="m-2 nav-link btn" href="/createPizza">Order</a></li>
+					
+					<li class="nav-item"><a class="m-2 nav-link btn" href="/account/${userId}">Account</a></li>
+			
+					<li class="nav-item"><a class="m-2 nav-link btn" href="/logout">Logout</a></li>
+
 				</ul>
 			</div>
 		</div>
